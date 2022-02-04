@@ -1,0 +1,297 @@
+﻿<Page
+    x:Class="PapaDarioPizzaEmporium.Wings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PapaDarioPizzaEmporium"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <!-- -->
+        <Style TargetType="Grid" x:Key="TopNav">
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="Background" Value="IndianRed" />
+            <!--<Setter Property="Orientation" Value="Horizontal" />  -->
+        </Style>
+
+        <!-- NAVIGATION BAR -->
+        <Style TargetType="TextBlock" x:Key="NavigationText">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="MS Mincho" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="30" />
+        </Style>
+        <!-- Under icons RIght. -->
+        <Style TargetType="TextBlock" x:Key="NavigationUnderText">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Gothic" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <!-- PAPA DARIOS Pizza Emporium -->
+        <Style TargetType="Button" x:Key="TitleText">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="50" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+
+        </Style>
+        <!--Navigation Buttons -->
+        <Style TargetType="Button" x:Key="NavigationButton">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="MS Mincho" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Background" Value="#0000" />
+            <!--  <Setter Property="Background" Value="#666666" /> -->
+            <Setter Property="Padding" Value="10,5,10,5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!--CONTACT US TITLE -->
+        <Style TargetType="TextBlock" x:Key="Contact">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+
+            <!--  <Setter Property="Background" Value="#666666" /> -->
+            <Setter Property="Padding" Value="10,5,10,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+    </Page.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--///////////////////      Navigation GRID    /////////////////////// -->
+        <Grid Grid.Row="0" Style="{StaticResource TopNav}"  >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*"  />
+            </Grid.RowDefinitions>
+
+            <!-- Grid space 0 -->
+            <Button Grid.Column="1" Style="{StaticResource TitleText}" Tapped="toHomePage" >Papa Darios Pizza Emporium</Button>
+
+            <!-- The navigation elements  -->
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Style="{StaticResource NavigationButton}" Tapped="toPizza" FontFamily="Arial">Pizza</Button>
+                <Button Grid.Column="2" Style="{StaticResource NavigationButton}" Tapped="toWings" FontFamily="Arial">Wings</Button>
+                <Button Grid.Column="3" Style="{StaticResource NavigationButton}" Tapped="toAboutUs"  FontFamily="Arial">About Us</Button>
+
+            </Grid>
+
+            <StackPanel  Grid.Column="2">
+                <TextBlock Style="{StaticResource Contact}" VerticalAlignment="Center" Text="Contact Us: 905-845-9430"></TextBlock>
+
+            </StackPanel>
+
+            <Grid Grid.Column="2" Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button  Grid.Column="2" HorizontalAlignment="Center"   FontFamily="Segoe MDL2 Assets" Content="&#xE7BF;" Foreground="WhiteSmoke" Background="Transparent" FontSize="40" FontWeight="Bold" Tapped="toCart">
+                    <Button.Flyout >
+                        <Flyout Placement="Full">
+                            <StackPanel >
+                                <TextBlock Text="Order Summary: " HorizontalAlignment="Center" FontSize="30" FontFamily="Arial"></TextBlock>
+                                <Grid>
+                                    <StackPanel x:Name="receipt"></StackPanel>
+                                </Grid>
+                                <TextBlock HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" x:Name="TbDiscount" Padding="10"></TextBlock>
+                                <TextBlock Text="Order Total: $" HorizontalAlignment="Left" FontSize="20" FontFamily="Arial" x:Name="TbTotal" Padding="10"></TextBlock>
+                                <Button x:Name="checkout" Click="BtnCheckout" Content="Checkout" Padding="10"></Button>
+                                <TextBlock HorizontalAlignment="Left" FontSize="20" FontFamily="Arial" x:Name="loginStatus"></TextBlock>
+                                <TextBox x:Name="TxHistory" MinHeight="300" MaxWidth="350" TextWrapping="Wrap" AcceptsReturn="True" PlaceholderText="Order History"></TextBox>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button  Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xEE57;"  Foreground="WhiteSmoke" Background="Transparent" FontSize="40" FontWeight="Bold" Tapped="toLogin" Margin="20,0,0,0"/>
+
+            </Grid>
+
+        </Grid>
+        <!-- End of navigation-->
+
+        <Grid Grid.Row="2">
+            <Grid.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/frontpage/wallpaper.jpg" Opacity="0.9" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="10% Off All Orders For Papa Dario Members!! Sign Up Today!" FontSize="30" FontFamily="Arial" Foreground="WhiteSmoke" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Text="1/2 lb: $9.99 1 lb: $13.99 2 lb $16.99 3 lb $19.99" 
+                       TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="20" Foreground="WhiteSmoke"  FontFamily="arial"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="1" Grid.Row="0" Stretch="Fill" x:Name="BbqWings" Source="Assets/Wings/BbqWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                    <ComboBox x:Name="CbBbq" Header="BBQ Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddBBQToCart" Tag="BBQ Wings" x:Name="BtnBBQ"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="2" Grid.Row="0" Stretch="Fill" x:Name="HGWings" Source="Assets/Wings/HoneyGarlicWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+                    <ComboBox x:Name="CbHG" Header="Honey Garlic Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddHGToCart" Tag="Honey Garlic Wings" x:Name="BtnHG"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="3" Grid.Row="0" Stretch="Fill" x:Name="TeriyakiWings" Source="Assets/Wings/TeriyakiWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="1">
+                    <ComboBox x:Name="CbTW" Header="Teriyaki Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddTWToCart" Tag="Teriyaki Wings" x:Name="BtnTW"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="4" Grid.Row="0" Stretch="Fill" x:Name="BuffaloWings" Source="Assets/Wings/BuffaloWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="1">
+                    <ComboBox x:Name="CbBW" Header="Buffalo Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddBWToCart" Tag="Buffalo Wings" x:Name="BtnBW"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="1" Grid.Row="2" Stretch="Fill" x:Name="CajunWings" Source="Assets/Wings/CajunWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                    <ComboBox x:Name="CbCajun" Header="Cajun Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddCajunToCart" Tag="Cajun Wings" x:Name="BtnCajun"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="2" Grid.Row="2" Stretch="Fill" x:Name="SnPWings" Source="Assets/Wings/SnPWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3">
+                    <ComboBox x:Name="CbSnP" Header="Salt n Pepper Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddSnPToCart" Tag="Salt n Pepper Wings" x:Name="BtnSnP"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="3" Grid.Row="2" Stretch="Fill" x:Name="JerkedWings" Source="Assets/Wings/JerkedWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="3">
+                    <ComboBox x:Name="CbJW" Header="Jerked Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddJWToCart" Tag="Jerked Wings" x:Name="BtnJW"></Button>
+                </StackPanel>
+
+                <Image Grid.Column="4" Grid.Row="2" Stretch="Fill" x:Name="LPWings" Source="Assets/Wings/LemonPepperWings.jpg" Margin="10"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="3">
+                    <ComboBox x:Name="CbLPW" Header="Lemon Pepper Wings" PlaceholderText="Choose size" Width="150" VerticalAlignment="Bottom" Foreground="WhiteSmoke" FontFamily="Arial" >
+                        <x:String>1/2 lb</x:String>
+                        <x:String>1 lb</x:String>
+                        <x:String>2 lb</x:String>
+                        <x:String>3 lb</x:String>
+                    </ComboBox>
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="WhiteSmoke" FontFamily="Arial" Content="Add to Cart"
+                         Click="BtnAddLPWToCart" Tag="Lemon Pepper Wings" x:Name="BtnLPW"></Button>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <StackPanel BorderBrush="WhiteSmoke">
+                    <TextBlock Text="Suggestions:" Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" Padding="5" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TbSuggestion" Height="80" MinWidth="500" HorizontalAlignment="Center" TextWrapping="Wrap" AcceptsReturn="True" 
+                             ScrollViewer.VerticalScrollMode="Enabled" Padding="5" BorderBrush="WhiteSmoke" Foreground="WhiteSmoke" MaxLength="250"
+                             PlaceholderText="Have any suggestions? We'd like to hear from you! (max 250 charcters)"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="BtnSuggestion" Content="Submit" Foreground="WhiteSmoke" Background="Gray" Click="Btn_Suggestion" />
+                        <TextBlock x:Name="TbConfirmSuggestion" Foreground="WhiteSmoke" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,8 @@
+{
+  "ConnectionStrings": {
+
+    "DarioPizzaDB": "Server = DESKTOP-VM4GAI5;Database=DarioPizzaDB;User ID=dariodario; PASSWORD=12345",
+
+    "DarioPizzaDBSqlServer": "Server=.\\MSSQLServer;Database=DarioPizzaDB;Trusted_Connection=Yes;"
+  }
+}

@@ -1,0 +1,203 @@
+﻿<Page
+    x:Class="PapaDarioPizzaEmporium.CreateUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PapaDarioPizzaEmporium"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <!-- -->
+        <Style TargetType="Grid" x:Key="TopNav">
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="Background" Value="IndianRed" />
+            <!--<Setter Property="Orientation" Value="Horizontal" />  -->
+        </Style>
+
+        <!-- NAVIGATION BAR -->
+        <Style TargetType="TextBlock" x:Key="NavigationText">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="MS Mincho" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="30" />
+        </Style>
+        <!-- Under icons RIght. -->
+        <Style TargetType="TextBlock" x:Key="NavigationUnderText">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Gothic" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <!-- PAPA DARIOS Pizza Emporium -->
+        <Style TargetType="Button" x:Key="TitleText">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="50" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+
+        </Style>
+        <!--Navigation Buttons -->
+        <Style TargetType="Button" x:Key="NavigationButton">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="MS Mincho" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Background" Value="#0000" />
+            <!--  <Setter Property="Background" Value="#666666" /> -->
+            <Setter Property="Padding" Value="10,5,10,5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!--CONTACT US TITLE -->
+        <Style TargetType="TextBlock" x:Key="Contact">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+
+            <!--  <Setter Property="Background" Value="#666666" /> -->
+            <Setter Property="Padding" Value="10,5,10,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+    </Page.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--///////////////////      Navigation GRID    /////////////////////// -->
+        <Grid Grid.Row="0" Style="{StaticResource TopNav}"  >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*"  />
+            </Grid.RowDefinitions>
+
+            <!-- Grid space 0 -->
+            <Button Grid.Column="1" Style="{StaticResource TitleText}" Tapped="toHomePage" >Papa Darios Pizza Emporium</Button>
+
+            <!-- Beside the Name  -->
+            <!-- <StackPanel Grid.Column="0" x:Name="Image" HorizontalAlignment="Left" VerticalAlignment="Center" Height="100" Width="80">
+                    <Image Source="/Images/Rollingpizza.gif" Width="80" Height="100" />
+            </StackPanel> -->
+
+            <!-- The navigation elements  -->
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Style="{StaticResource NavigationButton}" Tapped="toPizza" FontFamily="Arial">Pizza</Button>
+                <Button Grid.Column="2" Style="{StaticResource NavigationButton}" Tapped="toWings" FontFamily="Arial">Wings</Button>
+                <Button Grid.Column="3" Style="{StaticResource NavigationButton}" Tapped="toAboutUs"  FontFamily="Arial">About Us</Button>
+
+            </Grid>
+
+            <StackPanel  Grid.Column="2">
+                <TextBlock Style="{StaticResource Contact}" VerticalAlignment="Center" Text="Contact Us: 905-845-9430"></TextBlock>
+
+            </StackPanel>
+
+            <Grid Grid.Column="2" Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button  Grid.Column="2" HorizontalAlignment="Center"   FontFamily="Segoe MDL2 Assets" Content="&#xE7BF;" Foreground="WhiteSmoke" Background="Transparent" FontSize="40" FontWeight="Bold" Tapped="toCart">
+                    <Button.Flyout >
+                        <Flyout Placement="Full">
+                            <StackPanel >
+                                <TextBlock Text="Order Summary: " HorizontalAlignment="Center" FontSize="30" FontFamily="Arial"></TextBlock>
+                                <Grid>
+                                    <StackPanel x:Name="receipt"></StackPanel>
+                                </Grid>
+                                <TextBlock HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" x:Name="TbDiscount" Padding="10"></TextBlock>
+                                <TextBlock Text="Order Total: $" HorizontalAlignment="Left" FontSize="20" FontFamily="Arial" x:Name="TbTotal" Padding="10"></TextBlock>
+                                <Button x:Name="checkout" Click="BtnCheckout" Content="Checkout" Padding="10"></Button>
+                                <TextBlock HorizontalAlignment="Left" FontSize="20" FontFamily="Arial" x:Name="loginStatus"></TextBlock>
+                                <TextBox x:Name="TxHistory" MinHeight="300" MaxWidth="350" TextWrapping="Wrap" AcceptsReturn="True" PlaceholderText="Order History"></TextBox>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button  Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xEE57;"  Foreground="WhiteSmoke" Background="Transparent" FontSize="40" FontWeight="Bold" Tapped="toLogin" Margin="20,0,0,0"/>
+
+            </Grid>
+
+        </Grid>
+        <!-- end of navigation -->
+        <Grid Grid.Row="2">
+            <Grid.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/frontpage/wallpaper.jpg" Opacity=".9" />
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="600*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="300*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <TextBlock Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" TextAlignment="Center" >Username</TextBlock>
+                <TextBox x:Name="TbUsername"  PlaceholderText="Enter your username" Width="300"></TextBox>
+                <TextBlock Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" TextAlignment="Center">Password</TextBlock>
+                <PasswordBox x:Name="TbPassword"  PlaceholderText="Enter your password" Width="300"></PasswordBox>
+                <TextBlock Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" TextAlignment="Center">Confirm Password</TextBlock>
+                <PasswordBox x:Name="TbConfirmPass"  PlaceholderText="Confirm your password" Width="300"></PasswordBox>
+                <TextBlock Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" TextAlignment="Center">Email</TextBlock>
+                <TextBox x:Name="TbEmail"  PlaceholderText="Enter your email" Width="300"></TextBox>
+                <TextBlock Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" TextAlignment="Center">Address</TextBlock>
+                <TextBox x:Name="TbAddress"  PlaceholderText="Enter your address" Width="300"></TextBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Padding="10" Spacing="50">
+                    <Button Content="Sign Up" Foreground="WhiteSmoke" x:Name="BtnSignUp" Padding="10" Click="BtnSignUp_Click"/>
+                </StackPanel>
+                <TextBlock Foreground="WhiteSmoke" FontSize="20" FontFamily="Arial" TextAlignment="Center" x:Name="txConn">Connection status:</TextBlock>
+                
+
+            </StackPanel>
+            
+                <Grid Grid.Column="1"  Grid.Row="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Height="50">
+                    <TextBlock Padding="10">Need an account?</TextBlock>
+                    <TextBlock Padding="10" PointerPressed="creatUser">Click here</TextBlock>
+                </StackPanel>
+            </Grid>
+            
+            
+
+        </Grid>
+    </Grid>
+</Page>
